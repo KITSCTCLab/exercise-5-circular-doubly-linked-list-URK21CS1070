@@ -47,7 +47,8 @@ class DoublyCircularLinkedList:
         
         new_node = Node(data)
         curr_node = self.head
-        
+        for i in range(index):
+            curr_node = curr_node.next
         new_node.previous = curr_node.previous
         new_node.next = curr_node
         curr_node.previous.next = new_node
@@ -55,9 +56,17 @@ class DoublyCircularLinkedList:
         self.count += 1
         return True        
 
- 
+    def get(self, index) -> int:
+        if index < 0 or index >= self.count:
+            return -1
+        curr_node = self.head
+        for i in range(index):
+            curr_node = curr_node.next
+        return curr_node.data
        
-
+    def delete_at_index(self, index) -> bool:
+        if index < 0 or index >= self.count:
+            return False
         if index == 0:
             temp = self.head
             temp.next.previous = self.end
@@ -106,7 +115,8 @@ for item in input_data.split(', '):
     elif item.startswith('['):
         item = item[1:-1]
         for letter in item.split(','):
-           
+            if letter.isnumeric():
+                inner_list.append(int(letter))
         data.append(inner_list)
 
 obj = DoublyCircularLinkedList()
