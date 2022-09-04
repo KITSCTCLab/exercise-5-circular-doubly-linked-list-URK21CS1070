@@ -47,8 +47,7 @@ class DoublyCircularLinkedList:
         
         new_node = Node(data)
         curr_node = self.head
-        for i in range(index):
-            curr_node = curr_node.next
+        
         new_node.previous = curr_node.previous
         new_node.next = curr_node
         curr_node.previous.next = new_node
